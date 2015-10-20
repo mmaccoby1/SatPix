@@ -14,7 +14,7 @@ public class SatPix {
 		out.println(sizeOfLargestPasture);
 		out.close();
 		}*/
-		boolean[][] bill = fileToBoolArray("satpix.pdf");
+		boolean[][] bill = fileToBoolArray("satpix.txt");
 		for(int r = 0; r<bill.length; r++){
 			for(int c = 0; c<bill[0].length; c++){
 				System.out.print(bill[r][c]);
