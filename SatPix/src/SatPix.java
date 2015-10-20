@@ -6,19 +6,19 @@ public class SatPix {
 	public static void main(String[] args) throws IOException
 	{
 		boolean[][] bill = fileToBoolArray("satpix.txt");
-		int joe = 0;
+		int jack = 0;
 		int fred = 0;
 		for(int r = 0; r<bill.length; r++){
 			for(int c = 0; c<bill[0].length; c++){
 				if(bill[r][c]==true){
 					fred = recursivelyMeasureAndMarkPasture(r, c, bill);
-					if(fred>joe)
-						joe=fred;
+					if(fred>jack)
+						jack=fred;
 				}
 			}
 		}
 		PrintWriter peter = new PrintWriter(new BufferedWriter(new FileWriter("satpix.out")));
-		peter.println(joe);
+		peter.println(jack);
 		peter.close();
 	}
 	
