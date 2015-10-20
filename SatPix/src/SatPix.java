@@ -5,22 +5,21 @@ public class SatPix {
 
 	public static void main(String[] args) throws IOException
 	{
-		/*boolean[][] booleanArr = fileToBoolArray("satpix.in");
-		int sizeOfLargestPasture;
-		
-		YOUR CODE GOES HERE 
-		
-		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("satpix.out")));
-		out.println(sizeOfLargestPasture);
-		out.close();
-		}*/
 		boolean[][] bill = fileToBoolArray("satpix.txt");
+		int joe = 0;
+		int fred = 0;
 		for(int r = 0; r<bill.length; r++){
 			for(int c = 0; c<bill[0].length; c++){
-				System.out.print(bill[r][c]);
+				if(bill[r][c]==true){
+					fred = recursivelyMeasureAndMarkPasture(r, c, bill);
+					if(fred>joe)
+						joe=fred;
+				}
 			}
-			System.out.println();
 		}
+		PrintWriter peter = new PrintWriter(new BufferedWriter(new FileWriter("satpix.out")));
+		peter.println(joe);
+		peter.close();
 	}
 	
 	private static boolean[][] fileToBoolArray(String fileName) throws FileNotFoundException, IOException
@@ -46,7 +45,20 @@ public class SatPix {
 	{
 		//This recursive method employs the flood-fill algorithm to
 		//count the size of a single pasture and "mark" it so it is not double-counted
+		if (row >= 0
+				&& col >= 0
+				&& row < arr.length
+				&& col < arr[0].length
+				&& arr[row][col]==true)
+		{
+			arr[row][col] = false;
+			return 1 + recursivelyMeasureAndMarkPasture(row+1, col, arr)
+					+ recursivelyMeasureAndMarkPasture(row-1, col, arr)
+					+ recursivelyMeasureAndMarkPasture(row, col-1, arr)
+					+ recursivelyMeasureAndMarkPasture(row, col+1, arr);
+		}
 		return 0;
 	}
+	
 	
 }
